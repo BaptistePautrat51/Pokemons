@@ -1,0 +1,35 @@
+<button  (click)="goBack()"> Retour </button>
+<mat-card class="pokemon-card" *ngIf="pokemon">
+  <mat-grid-list cols="2" rowHeight="300px">
+    <mat-grid-tile><img mat-card-image src="assets/img/official-artwork/{{pokemon.id}}.png" alt="{{pokemon.name}} artwork">
+     <mat-grid-tile-footer class="mat-grid-tile-footer"> No. {{ pokemon.id |number: '3.0'}} </mat-grid-tile-footer>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-list role="list">
+        <mat-list-item role="listitem"> {{pokemon.name}} <mat-icon matListIcon (click)="audio.play()">play_circle_outline</mat-icon></mat-list-item>
+        <mat-list-item role="listitem">
+          <mat-chip-list aria-label="Pokemon types">
+            <div *ngFor="let type of pokemon.types" >
+              <mat-chip>{{type}}</mat-chip>
+            </div>
+          </mat-chip-list>
+        </mat-list-item>
+        <mat-list-item role="listitem">Taille: {{pokemon.height | number: '1.1'}} m</mat-list-item>
+        <mat-list-item role="listitem">Poids: {{pokemon.weight |number: '1.1'}} kg</mat-list-item>
+      </mat-list>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+  <mat-card-content>
+    <p>
+      {{pokemon.description}}
+    </p>
+  </mat-card-content>
+
+  <audio autoplay #audio >
+    <source src='assets/audio/{{pokemon.id}}.mp3' type="audio/mp3">
+  </audio>
+
+</mat-card>
+
+
